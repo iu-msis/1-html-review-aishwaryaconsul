@@ -21,6 +21,10 @@ footer{
 
     h5{text-align: center; }
 
+    .r{
+        text-align: center; 
+    }
+
     #abc{
         margin:35px; 
         border: 20px darkgrey solid;
