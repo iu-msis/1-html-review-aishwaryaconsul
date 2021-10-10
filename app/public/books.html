@@ -10,6 +10,7 @@
 
     <title>Hello, world!</title>
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/vue@next"></script>
   </head>
 
   <body>
@@ -42,6 +43,7 @@
     
 
     <main> 
+      <div class="container" id="app">
         <table id ="taskTable" class="table table-striped">
             <thead>
               <tr>
@@ -55,48 +57,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1984</td>
-                <td>George Orwell</td>
-                <td>1949</td>
-                <td>Secker & Warburg</td>
-                <td>328</td>
-                <td>$6.99</td>
-              </tr>
-              <tr>
-                <td>The Handmaid's Tale</td>
-                <td>Margaret Atwood</td>
-                <td>1985</td>
-                <td>McClelland and Stewart</td>
-                <td>311</td>
-                <td>$7.50</td>
-              </tr>
-              <tr>
-                <td>Farenheit 451</td>
-                <td>Ray Bradbury</td>
-                <td>1953</td>
-                <td>Simon & Schuster</td>
-                <td>193</td>
-                <td>$4.99</td>
-              </tr>
-              <tr>
-                <td>The God of Small Things</td>
-                <td>Arundhati Roy</td>
-                <td>1996</td>
-                <td>IndiaInk</td>
-                <td>321</td>
-                <td>$5.83</td>
-              </tr>
-              <tr>
-                <td>To Kill a Mockingbird</td>
-                <td>Harper Lee</td>
-                <td>1960</td>
-                <td>J.B. Lippincott & Co.</td>
-                <td>281</td>
-                <td>$7.00</td>
-              </tr>
+                <tr v-for="b in book">
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.year }}</td>
+                  <td>{{ book.publisher }}</td>
+                  <td>{{ book.pcount }}</td>
+                  <td>{{ prettyDollar(book.msrp) }}</td>
+                  </tr>
             </tbody>
           </table>
+        </div>
          
           <center><form class = "abc" id = "abc">
             
@@ -150,5 +121,7 @@
     <script>
       new Tablesort(document.getElementById('taskTable'));
     </script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

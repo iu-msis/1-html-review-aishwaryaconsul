@@ -1,0 +1,4 @@
+MYSQL_DATABASE=msisdb
+MYSQL_HOST=msisdsdb.chrwhozxmngs.us-east-2.rds.amazonaws.com
+MYSQL_USER=msisdsadmin
+MYSQL_PASSWORD=Puckack1
