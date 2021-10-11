@@ -6,13 +6,13 @@ CREATE TABLE book(
 	id int PRIMARY KEY AUTO_INCREMENT ,
     title varchar(24) UNIQUE NOT NULL,
     author varchar(24) UNIQUE NOT NULL,
-    year int NOT NULL,
+    pyear int NOT NULL,
     publisher varchar(24) UNIQUE NOT NULL,
     pcount int NOT NULL,
     msrp double NOT NULL
 );
 
-INSERT INTO book (id, title, author, year, publisher, pcount, msrp) VALUES 
+INSERT INTO book (id, title, author, pyear, publisher, pcount, msrp) VALUES 
 (1, '1984', 'George Orwell', 1949, 'Secker & Warburg', 328, 6.99),
 (2, 'The Handmaids Tale', 'Margaret Atwood', 1985, 'McClelland and Stewart', 311, 7.50),
 (3, 'Farenheit 451', 'Ray Bradbury', 1953, 'Simon & Schuster', 193, 4.99),
