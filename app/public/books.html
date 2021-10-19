@@ -65,42 +65,46 @@
                   <td>{{ b.publisher }}</td>
                   <td>{{ b.pcount }}</td>
                   <td>{{ prettyDollar(b.msrp) }}</td>
+                  <!-- <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm">Small button</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm">Small button</button>
+                  </td> -->
                   </tr>
             </tbody>
           </table>
-        </div>
          
-          <center><form class = "abc" id = "abc">
+          <center><form v-on:submit.prevent="postNewBook" class = "abc" id = "abc">
             
               <label for="title" class="title">Enter Title</label>
-              <input type="text" class="form-control" id="title">
+              <input type="text" v-model="bookForm.title" class="form-control" id="title">
             
             <div class="mb-3">
                 <div class = "col">
                 <label for="author" class="author">Enter Author</label>
-                <input type="text" class="form-control" id="author">
+                <input type="text" v-model="bookForm.author" class="form-control" id="author">
             </div>
             </div>
+            <div class="mb-3">
             <div class="col">
                 <label for="year" class="year">Enter Year Published</label>
-                <input type="text" class="form-control" id="year">
+                <input type="number" v-model="bookForm.pyear" class="form-control" id="year">
             </div>
             </div>
             <div class="mb-3">
                 <label for="publisher" class="publisher">Enter Publisher</label>
-                <input type="text" class="form-control" id="publisher">
+                <input type="text" v-model="bookForm.publisher" class="form-control" id="publisher">
             </div>
             <div class="mb-3">
                 <label for="count" class="count">Enter Page Count</label>
-                <input type="text" class="form-control" id="count">
+                <input type="number" v-model="bookForm.pcount" class="form-control" id="count">
             </div>
             <div class="mb-3">
                 <label for="msrp" class="msrp">Enter MSRP</label>
-                <input type="text" class="form-control" id="msrp">
+                <input type="number" step="0.01" v-model="bookForm.msrp" class="form-control" id="msrp">
             </div>
-            <center><button type="submit" class="btn btn-primary" name = "button" id = "button">Submit</button></center>
+          <center><button type="submit" class="btn btn-primary" name = "button" id = "button">Submit</button></center>
           </form></center>
-        
+        </div>
         </main> 
 
         <footer class = "rows" style = "background-color:lightgray">

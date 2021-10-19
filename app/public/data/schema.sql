@@ -1,15 +1,17 @@
 -- database-2.cluster-ro-cowe6qx6tye0.us-east-2.rds.amazonaws.com
 -- CREATE USER 'msis-reader'@'%' IDENTIFIED BY 'msisreadonly';
 
-DROP TABLE IF EXISTS book;
+CREATE DATABASE IF NOT EXISTS msisdb;
+USE msisdb;
+
 CREATE TABLE book(
 	id int PRIMARY KEY AUTO_INCREMENT ,
-    title varchar(24) UNIQUE NOT NULL,
-    author varchar(24) UNIQUE NOT NULL,
+    title varchar(24) NOT NULL,
+    author varchar(24) NOT NULL,
     pyear int NOT NULL,
-    publisher varchar(24) UNIQUE NOT NULL,
+    publisher varchar(24) NOT NULL,
     pcount int NOT NULL,
-    msrp double NOT NULL
+    msrp float NOT NULL
 );
 
 INSERT INTO book (id, title, author, pyear, publisher, pcount, msrp) VALUES 
