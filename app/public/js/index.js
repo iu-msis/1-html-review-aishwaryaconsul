@@ -4,7 +4,8 @@ const app = {
         result: undefined,
         app: 0,
         book: [],
-        bookForm: {}
+        bookForm: {},
+        selectedBook: null
       }
     },
   
@@ -46,10 +47,22 @@ const app = {
         })
         },
 
+        postBook(evt) {
+          if (this.selectedBook === null) 
+          {
+              console.log("POSTING NEW BOOK!!");
+              this.postNewBook(evt);
+          } else
+          {
+              console.log("POSTING EDITED!! BOOK!!");
+              this.postEditBook(evt);
+          }
+        },
+
         postNewBook(evt) {
-        //     this.offerForm.studentId = this.selectedStudent.id;        
+        //     this.bookForm.bookId = this.selectedBook.id;        
             
-            // console.log("Posting!", this.bookForm);
+            console.log("Posting!", this.selectedBook);
     
             fetch('api/books/create.php', {
                 method:'POST',
@@ -67,8 +80,60 @@ const app = {
                 // reset the form
                 this.bookForm = {};
               });
+          },
+    postEditBook(evt) {
+//       // this.offerForm.studentId = this.selectedStudent.id;
+      this.bookForm.id = this.selectedBook.id;       
+      
+      console.log("Updating!", this.selectedBook);
+
+      fetch('api/books/update.php', {
+          method:'POST',
+          body: JSON.stringify(this.bookForm),
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
           }
+        })
+        .then( response => response.json() )
+        .then( json => {
+          console.log("Returned from post:", json);
+          // TODO: test a result was returned!
+          this.book = json;
+          
+          this.resetBookForm();
+        });
     },
+    postDeleteBook(o) {
+      if (!confirm("Are you sure you want to delete the book from")) {
+          return;
+      }
+      
+      fetch('api/books/delete.php', {
+          method:'POST',
+          body: JSON.stringify(o),
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          }
+        })
+        .then( response => response.json() )
+        .then( json => {
+          console.log("Returned from post:", json);
+          // TODO: test a result was returned!
+          this.book = json;
+          
+          this.resetBookForm();
+        });
+    },
+    selectBook(o) {
+      this.selectedBook = o;
+      this.bookForm = Object.assign({}, this.selectedBook);
+    },
+   
+    resetBookForm() {
+      this.selectedBook = null;
+      this.bookForm = {};
+    }
+  },
 
     created() {
         this.fetchUserData();

@@ -65,15 +65,16 @@
                   <td>{{ b.publisher }}</td>
                   <td>{{ b.pcount }}</td>
                   <td>{{ prettyDollar(b.msrp) }}</td>
-                  <!-- <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm">Small button</button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm">Small button</button>
-                  </td> -->
+                  <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"  v-on:click="selectBook(b)">Edit</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="postDeleteBook(b)">Delete</button>
+                  </td>
                   </tr>
             </tbody>
           </table>
          
-          <center><form v-on:submit.prevent="postNewBook" class = "abc" id = "abc">
+          <!-- <h3>{{ selectedBook === null ? "Add" : "Edit" }} book</h3> -->
+          <center><form v-on:submit.prevent="postBook" class = "abc" id = "abc">
             
               <label for="title" class="title">Enter Title</label>
               <input type="text" v-model="bookForm.title" class="form-control" id="title">
@@ -102,7 +103,10 @@
                 <label for="msrp" class="msrp">Enter MSRP</label>
                 <input type="number" step="0.01" v-model="bookForm.msrp" class="form-control" id="msrp">
             </div>
-          <center><button type="submit" class="btn btn-primary" name = "button" id = "button">Submit</button></center>
+          <center><button type="submit" class="btn btn-primary" name = "button" id = "button">{{ selectedBook === null ? "Add " : "Edit " }}Book</button></center>
+          <button type="button" class="btn btn-outline-secondary" 
+                v-if="selectedBook"
+                v-on:click="resetBookForm">Cancel</button>
           </form></center>
         </div>
         </main> 
